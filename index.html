@@ -27,7 +27,16 @@
                     name: ko.observable(''),
                     sayHello: function () {
                         this.message("Hello " + this.name() + '!');
+                    },
+                    greet: function () {
+                        AppNamespace.app.navigate("greeting");
                     }
+                };
+                return viewModel;
+            };
+            AppNamespace.greeting = function (params) {
+                var viewModel = {
+                    message: 'Hello!',
                 };
                 return viewModel;
             };
@@ -38,6 +47,11 @@
             <h1 data-bind="text: message"></h1>
             Enter your name: <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
             <div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
-        </div>  
+            <div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
+        </div> 
+        <div data-options="dxView : { name: 'greeting' } " >
+            <h1 data-bind="text: message"></h1>
+            <div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
+        </div>         
     </body>
 </html>
