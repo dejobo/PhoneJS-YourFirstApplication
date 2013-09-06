@@ -16,7 +16,10 @@
             window.AppNamespace = {};
             $(function () {
                 AppNamespace.app = new DevExpress.framework.html.HtmlApplication(
-                    { namespace: AppNamespace }
+                    {
+                        namespace: AppNamespace,
+                        defaultLayout: "default"
+                    }
                 );
                 AppNamespace.app.router.register(":view", { view: "home" });
                 AppNamespace.app.navigate();
@@ -43,15 +46,23 @@
         </script>
 	</head>
     <body>
+        <div data-options="dxLayout : { name: 'default' } " >
+            <div data-bind="dxToolbar: { items: [ { text: 'My First Application', align: 'center' } ] }" ></div>
+            <div data-options="dxContentPlaceholder : { name: 'content', transition: 'slide' } " ></div>
+        </div>
         <div data-options="dxView: {name: 'home'}">
-            <h1 data-bind="text: message"></h1>
-            Enter your name: <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
-            <div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
-            <div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <h1 data-bind="text: message"></h1>
+                Enter your name: <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
+                <div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
+                <div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
+            </div>
         </div> 
         <div data-options="dxView : { name: 'greeting' } " >
-            <h1 data-bind="text: message"></h1>
-            <div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <h1 data-bind="text: message"></h1>
+                <div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
+            </div>
         </div>         
     </body>
 </html>
