@@ -21,7 +21,7 @@
                         defaultLayout: "default"
                     }
                 );
-                AppNamespace.app.router.register(":view", { view: "home" });
+                AppNamespace.app.router.register(":view/:name", { view: "home", name: '' });
                 AppNamespace.app.navigate();
             });
             AppNamespace.home = function () {
@@ -32,14 +32,14 @@
                         this.message("Hello " + this.name() + '!');
                     },
                     greet: function () {
-                        AppNamespace.app.navigate("greeting");
+                        AppNamespace.app.navigate("greeting/" + this.name());
                     }
                 };
                 return viewModel;
             };
             AppNamespace.greeting = function (params) {
                 var viewModel = {
-                    message: 'Hello!',
+                    message: ko.observable('Hello ' + params.name + '!'),
                 };
                 return viewModel;
             };
