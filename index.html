@@ -16,11 +16,17 @@
                 AppNamespace.app.router.register(":view", { view: "home" });
                 AppNamespace.app.navigate();
             });
+            AppNamespace.home = function () {
+                var viewModel = {
+                    message: 'Welcome!'
+                };
+                return viewModel;
+            };
         </script>
 	</head>
     <body>
         <div data-options="dxView: {name: 'home'}">
-            Hello World!
+                <h1 data-bind="text: message"></h1>
         </div>  
     </body>
 </html>
